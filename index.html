@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi, Welcome!</title>
+    <style>
+        /* Define Light and Dark theme colors */
+        :root {
+            --bg-color-light: #fff;
+            --bg-color-dark: #121212;
+            --text-color-light: #000;
+            --text-color-dark: #fff;
+            --link-color-light: #1e90ff;
+            --link-color-dark: #4a90e2;
+            --button-bg-light: #ffcd3c;
+            --button-bg-dark: #4a90e2;
+        }
+
+        /* Default theme is dark */
+        body {
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-dark);
+            font-family: Arial, sans-serif;
+            transition: all 0.3s ease;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        a {
+            color: var(--link-color-dark);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Dark theme styles */
+        body[data-theme='dark'] {
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-dark);
+        }
+
+        a[data-theme='dark'] {
+            color: var(--link-color-dark);
+        }
+
+        /* Light theme styles */
+        body[data-theme='light'] {
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+        }
+
+        a[data-theme='light'] {
+            color: var(--link-color-light);
+        }
+
+        /* Animated Hello There Text */
+        .hello-there {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px; /* Reduced bottom margin */
+            display: inline-block;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        /* Colorful letters animation */
+        .hello-there span {
+            display: inline-block;
+            animation: colorChange 2s infinite;
+        }
+
+        /* Random Quotes Title */
+        .random-quotes-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 10px; /* Reduced bottom margin */
+        }
+
+        /* Joke API Title */
+        .joke-title {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-top: 20px; /* Reduced top margin */
+            margin-bottom: 10px; /* Reduced bottom margin */
+        }
+
+        /* Quote container */
+        .quote-container {
+            font-size: 1.2em;
+            margin-top: 10px; /* Reduced top margin */
+        }
+
+        /* Circular Theme Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--button-bg-dark);
+            color: #fff;
+            font-size: 24px;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Light theme button */
+        body[data-theme='light'] .theme-toggle {
+            background-color: var(--button-bg-light);
+        }
+
+        /* Animation for "Hello there" (moving text) */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation for color change on each letter of Hello there */
+        @keyframes colorChange {
+            0% { color: #ff6347; }
+            25% { color: #1e90ff; }
+            50% { color: #32cd32; }
+            75% { color: #ff4500; }
+            100% { color: #ff6347; }
+        }
+
+        /* Meme image container */
+        .meme-container,
+        .quote-container {
+            width: 100%;
+            max-width: 600px;  /* Ensure both have the same max width */
+            margin: 10px;  /* Reduced margin */
+            text-align: center;
+        }
+
+        .meme-container img,
+        .quote-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px; /* Reduced bottom margin */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .quote-container,
+            .meme-container {
+                max-width: 90%; /* Reduce max-width on small screens */
+            }
+
+            .hello-there {
+                font-size: 2rem;
+            }
+
+            .random-quotes-title {
+                font-size: 1.4rem; /* Smaller font size */
+            }
+
+            .joke-title {
+                font-size: 1.4rem; /* Smaller font size */
+            }
+
+            .theme-toggle {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body data-theme="dark"> <!-- Set default theme to dark -->
+
+    <!-- Theme toggle button -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <!-- Sun Icon for Light Theme, Moon Icon for Dark Theme -->
+        <span id="theme-icon">🌙</span>
+    </button>
+
+    <!-- Animated "Hello there" -->
+    <div class="hello-there">
+        <span>H</span><span>e</span><span>l</span><span>l</span><span>o</span><span>!</span> 
+        <span> </span><span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span> 
+        <span> </span><span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span><span>.</span><span>.</span>
+    </div>
+
+    <!-- Joke Title -->
+    <div class="joke-title">
+        Random Programming Joke
+    </div>
+
+    <!-- Random Joke API -->
+    <div class="meme-container">
+        <img src="https://readme-jokes.vercel.app/api?hideBorder&theme=react&qColor=%23944bcc&aColor=%23bbdb51" width="100%" alt="Random Joke">
+    </div>
+
+    <!-- Random Quotes Title -->
+    <div class="random-quotes-title">
+        Random Quotes
+    </div>
+
+    <!-- Random Programming Quote -->
+    <div class="quote-container">
+        <a href="https://readme-daily-quotes.vercel.app/api?font=trebuchet_ms#gh-dark-mode-only" target="_blank">
+            <img src="https://readme-daily-quotes.vercel.app/api?font=trebuchet_ms#gh-dark-mode-only" alt="Daily Programming Quote">
+        </a>
+    </div>
+
+    <!-- JavaScript for toggling themes -->
+    <script>
+        // Toggle light/dark theme
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+
+            // Toggle the icon between sun and moon
+            const themeIcon = document.getElementById('theme-icon');
+            if (newTheme === 'dark') {
+                themeIcon.textContent = '🌙';  // Moon for dark mode
+            } else {
+                themeIcon.textContent = '☀️';  // Sun for light mode
+            }
+        }
+    </script>
+</body>
+</html>
